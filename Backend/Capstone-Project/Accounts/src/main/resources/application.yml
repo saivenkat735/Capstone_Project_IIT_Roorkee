@@ -1,14 +1,14 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/account
-    username: root                   # MySQL username
-    password: pass@word1                      # MySQL password
+    url: jdbc:mysql://${DB_HOST}:${DB_PORT}/${DB_NAME}?useSSL=true&trustServerCertificate=true
+    username: ${DB_USER}                   # MySQL username
+    password: ${DB_PASSWORD}                      # MySQL password
     driver-class-name: com.mysql.cj.jdbc.Driver  # MySQL JDBC driver class
 
   jpa:
     hibernate:
       ddl-auto: update  # Automatically update the database schema based on entities
-
+    show-sql: false
   # Optionally configure connection pool settings
    # Minimum number of idle connections in the pool
 
