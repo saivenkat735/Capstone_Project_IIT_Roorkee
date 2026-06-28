@@ -24,7 +24,7 @@ const BalanceCards = () => {
             const token = localStorage.getItem('authToken');
             const decodedToken = jwtDecode(token);
             const response = await axios.get(
-                `http://localhost:2001/api/accounts/person/${decodedToken.personId}`,
+                `${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${decodedToken.personId}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             setAccounts(response.data);
@@ -43,7 +43,7 @@ const BalanceCards = () => {
             const decodedToken = jwtDecode(token);
             
             await axios.post(
-                'http://localhost:2001/api/accounts',
+                '${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts',
                 {
                     ...newAccount,
                     id: decodedToken.personId,

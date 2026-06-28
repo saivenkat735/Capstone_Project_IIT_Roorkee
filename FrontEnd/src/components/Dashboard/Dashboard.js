@@ -83,9 +83,9 @@ const Dashboard = () => {
 
             // Fetch all data in parallel
             const [accountsResponse, billsResponse, transactionsResponse] = await Promise.all([
-                axios.get(`http://localhost:2001/api/accounts/person/${personId}`),
-                axios.get(`http://localhost:9007/bills/person/${personId}`),
-                axios.get(`http://localhost:2002/TransactionHistory/person/${personId}`)
+                axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${personId}`),
+                axios.get(`${process.env.REACT_APP_BILLS_URL}/bills/person/${personId}`),
+                axios.get(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/person/${personId}`)
             ]);
 
             // Validate the data received

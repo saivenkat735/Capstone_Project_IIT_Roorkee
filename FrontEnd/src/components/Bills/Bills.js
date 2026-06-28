@@ -30,7 +30,7 @@ const Bills = () => {
     const fetchAccounts = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`http://localhost:2001/api/accounts/person/${personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${personId}`);
             const activeAccounts = response.data.filter(acc => acc.active);
             setAccounts(activeAccounts);
         } catch (error) {
@@ -41,7 +41,7 @@ const Bills = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('http://localhost:2004/category');
+            const response = await axios.get('${process.env.REACT_APP_CATEGORY_URL}/category');
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -52,7 +52,7 @@ const Bills = () => {
     const fetchBills = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`http://localhost:9007/bills/person/${personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_BILLS_URL}/bills/person/${personId}`);
             
             if (!response.data) {
                 toast.error('No data received from server');
@@ -98,7 +98,7 @@ const Bills = () => {
                 accountId: personId
             };
 
-            const response = await axios.post('http://localhost:9007/bills/addbills', billData);
+            const response = await axios.post('${process.env.REACT_APP_BILLS_URL}/bills/addbills', billData);
 
             if (response.status === 200) {
                 toast.success('Bill added successfully');
@@ -125,7 +125,7 @@ const Bills = () => {
                 accountId: personId
             };
 
-            const response = await axios.put(`http://localhost:9007/bills/update/${billId}`, updateData);
+            const response = await axios.put(`${process.env.REACT_APP_BILLS_URL}/bills/update/${billId}`, updateData);
 
             if (response.status === 200) {
                 toast.success('Bill updated successfully');
@@ -142,7 +142,7 @@ const Bills = () => {
     const handleDeleteBill = async (billId) => {
         if (window.confirm('Are you sure you want to delete this bill?')) {
             try {
-                await axios.delete(`http://localhost:9007/bills/delete/${billId}`);
+                await axios.delete(`${process.env.REACT_APP_BILLS_URL}/bills/delete/${billId}`);
                 toast.success('Bill deleted successfully');
                 fetchBills();
             } catch (error) {
@@ -176,7 +176,7 @@ const Bills = () => {
                     personId: personId,
                     isFloatingExpense: false
                 };
-                const categoryResponse = await axios.post('http://localhost:2004/category', newCategory);
+                const categoryResponse = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', newCategory);
                 billCategory = categoryResponse.data;
                 await fetchCategories();
             }
@@ -192,7 +192,7 @@ const Bills = () => {
             };
 
             // Create the transaction
-            const transactionResponse = await axios.post('http://localhost:2002/TransactionHistory/transaction', transactionData);
+            const transactionResponse = await axios.post('${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction', transactionData);
 
             if (transactionResponse.status === 200) {
                 // Calculate next month's due date
@@ -206,7 +206,7 @@ const Bills = () => {
                 };
                 
                 // Update bill with next month's due date
-                const billUpdateResponse = await axios.put(`http://localhost:9007/bills/update/${selectedBill.billId}`, {
+                const billUpdateResponse = await axios.put(`${process.env.REACT_APP_BILLS_URL}/bills/update/${selectedBill.billId}`, {
                     ...updatedBill,
                     accountId: personId
                 });

@@ -40,7 +40,7 @@ const Transaction = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('http://localhost:2004/category');
+            const response = await axios.get('${process.env.REACT_APP_CATEGORY_URL}/category');
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -51,7 +51,7 @@ const Transaction = () => {
     const fetchAccounts = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`http://localhost:2001/api/accounts/person/${personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${personId}`);
             const activeAccounts = response.data.filter(account => account.active);
             setAccounts(activeAccounts);
         } catch (error) {
@@ -63,7 +63,7 @@ const Transaction = () => {
     const fetchTransactions = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`http://localhost:2002/TransactionHistory/person/${personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/person/${personId}`);
             console.log(response.data);
             const sortedTransactions = response.data.sort((a, b) => b.transactionId - a.transactionId);
             setTransactions(sortedTransactions);
@@ -92,7 +92,7 @@ const Transaction = () => {
                 amountSpent: newAmountSpent
             };
 
-            await axios.put(`http://localhost:2004/category/${categoryId}`, updatedCategory);
+            await axios.put(`${process.env.REACT_APP_CATEGORY_URL}/category/${categoryId}`, updatedCategory);
             await fetchCategories();
         } catch (error) {
             console.error('Error updating category amount spent:', error);
@@ -136,7 +136,7 @@ const Transaction = () => {
                         isFloatingExpense: false,
                         amountSpent: transactionFormData.type === 'DEBIT' ? amount : 0
                     };
-                    const categoryResponse = await axios.post('http://localhost:2004/category', newCategory);
+                    const categoryResponse = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', newCategory);
                     categoryId = categoryResponse.data.categoryId;
                 } catch (error) {
                     console.error('Error creating new category:', error);
@@ -151,7 +151,7 @@ const Transaction = () => {
                         amountSpent: Number(category.amountSpent) + amount
                     };
                     try {
-                        await axios.put(`http://localhost:2004/category/${categoryId}`, updatedCategory);
+                        await axios.put(`${process.env.REACT_APP_CATEGORY_URL}/category/${categoryId}`, updatedCategory);
                     } catch (error) {
                         console.error('Error updating category amount:', error);
                         toast.error('Failed to update category amount');
@@ -169,7 +169,7 @@ const Transaction = () => {
                 categoryId: categoryId
             };
 
-            const response = await axios.post('http://localhost:2002/TransactionHistory/transaction', transactionData);
+            const response = await axios.post('${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction', transactionData);
 
             if (response.status === 200) {
                 setTransactions(prevTransactions => [response.data, ...prevTransactions]);
@@ -201,11 +201,11 @@ const Transaction = () => {
                             ...category,
                             amountSpent: Math.max(0, category.amountSpent - transaction.amount)
                         };
-                        await axios.put(`http://localhost:2004/category/${transaction.categoryId}`, updatedCategory);
+                        await axios.put(`${process.env.REACT_APP_CATEGORY_URL}/category/${transaction.categoryId}`, updatedCategory);
                     }
                 }
 
-                const response = await axios.delete(`http://localhost:2002/TransactionHistory/transaction/${transactionId}`);
+                const response = await axios.delete(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction/${transactionId}`);
                 if (response.status === 200) {
                     toast.success(response.data || 'Transaction deleted successfully');
                     await Promise.all([fetchTransactions(), fetchAccounts(), fetchCategories()]);

@@ -106,8 +106,8 @@ const FinancialReports = () => {
             }
 
             const [transactionsResponse, categoriesResponse] = await Promise.all([
-                axios.get(`http://localhost:2002/TransactionHistory/person/${personId}`),
-                axios.get('http://localhost:2004/category')
+                axios.get(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/person/${personId}`),
+                axios.get('${process.env.REACT_APP_CATEGORY_URL}/category')
             ]);
 
             const debitCategories = categoriesResponse.data.filter(cat => cat.type === 'DEBIT');

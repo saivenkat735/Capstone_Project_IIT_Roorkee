@@ -35,7 +35,7 @@ const RecurringPayments = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.get(
-                `http://localhost:2001/api/accounts/person/${personId}`,
+                `${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${personId}`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             setAccounts(response.data);
@@ -49,7 +49,7 @@ const RecurringPayments = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.get(
-                'http://localhost:9007/recurring-payments',
+                '${process.env.REACT_APP_BILLS_URL}/recurring-payments',
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             
@@ -73,7 +73,7 @@ const RecurringPayments = () => {
         try {
             const token = localStorage.getItem('authToken');
             await axios.post(
-                'http://localhost:9007/recurring-payments',
+                '${process.env.REACT_APP_BILLS_URL}/recurring-payments',
                 newPayment,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
@@ -93,7 +93,7 @@ const RecurringPayments = () => {
             try {
                 const token = localStorage.getItem('authToken');
                 await axios.delete(
-                    `http://localhost:9007/recurring-payments/${paymentId}`,
+                    `${process.env.REACT_APP_BILLS_URL}/recurring-payments/${paymentId}`,
                     { headers: { 'Authorization': `Bearer ${token}` } }
                 );
                 toast.success('Recurring payment deleted successfully');

@@ -38,19 +38,19 @@ const UserProfile = () => {
                 
                 // Fetch user details
                 const userResponse = await axios.get(
-                    `http://localhost:9099/person/${decodedToken.personId}`,
+                    `${process.env.REACT_APP_SECURE_URL}/person/${decodedToken.personId}`,
                     { headers: { 'Authorization': `Bearer ${token}` } }
                 );
 
                 // Fetch account statistics
                 const accountsResponse = await axios.get(
-                    `http://localhost:2001/api/accounts/person/${decodedToken.personId}`,
+                    `${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${decodedToken.personId}`,
                     { headers: { 'Authorization': `Bearer ${token}` } }
                 );
 
                 // Fetch transaction statistics
                 const transactionsResponse = await axios.get(
-                    'http://localhost:2002/TransactionHistory',
+                    '${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory',
                     { headers: { 'Authorization': `Bearer ${token}` } }
                 );
 
@@ -94,7 +94,7 @@ const UserProfile = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.put(
-                `http://localhost:9099/person/update/${userInfo.personId}`,
+                `${process.env.REACT_APP_SECURE_URL}/person/update/${userInfo.personId}`,
                 {
                     email: editForm.email,
                     currentPassword: editForm.currentPassword,

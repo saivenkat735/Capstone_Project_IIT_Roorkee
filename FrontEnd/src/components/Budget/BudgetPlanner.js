@@ -42,7 +42,7 @@ const BudgetPlanner = () => {
     const fetchCategories = async (personId) => {
         const token = localStorage.getItem('authToken');
         const response = await axios.get(
-            `http://localhost:2004/category/person/${personId}`,
+            `${process.env.REACT_APP_CATEGORY_URL}/category/person/${personId}`,
             { headers: { 'Authorization': `Bearer ${token}` } }
         );
         setCategories(response.data.filter(cat => cat.type === 'EXPENSE'));

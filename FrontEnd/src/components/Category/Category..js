@@ -31,8 +31,8 @@ const Category = () => {
 
             // Get all transactions and categories
             const [transactionsResponse, categoriesResponse] = await Promise.all([
-                axios.get(`http://localhost:2002/TransactionHistory/person/${personId}`),
-                axios.get('http://localhost:2004/category')
+                axios.get(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/person/${personId}`),
+                axios.get('${process.env.REACT_APP_CATEGORY_URL}/category')
             ]);
 
             // Filter debit categories
@@ -76,7 +76,7 @@ const Category = () => {
     const handleCreateCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('http://localhost:2004/category', {
+            const response = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', {
                 ...newCategory,
                 type: 'DEBIT',
                 amountSpent: 0
@@ -98,7 +98,7 @@ const Category = () => {
 
     const handleUpdateCategory = async (id) => {
         try {
-            const response = await axios.put(`http://localhost:2004/category/${id}`, {
+            const response = await axios.put(`${process.env.REACT_APP_CATEGORY_URL}/category/${id}`, {
                 ...editingCategory,
                 type: 'DEBIT'
             });
@@ -114,7 +114,7 @@ const Category = () => {
 
     const handleDeleteCategory = async (id) => {
         try {
-            await axios.delete(`http://localhost:2004/category/${id}`);
+            await axios.delete(`${process.env.REACT_APP_CATEGORY_URL}/category/${id}`);
             setCategories(categories.filter(cat => cat.categoryId !== id));
             toast.success('Category deleted successfully');
         } catch (error) {

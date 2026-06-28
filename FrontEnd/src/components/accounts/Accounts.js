@@ -24,7 +24,7 @@ const Accounts = () => {
     const fetchAccounts = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`http://localhost:2001/api/accounts/person/${personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${decodedToken.personId}`);
             setAccounts(response.data);
             setLoading(false);
         } catch (error) {
@@ -38,7 +38,7 @@ const Accounts = () => {
         e.preventDefault();
         try {
             const personId = localStorage.getItem('personId');
-            await axios.post('http://localhost:2001/api/accounts', {
+            await axios.post('${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts', {
                 ...formData,
                 id: personId,
                 userName: personId,
@@ -58,7 +58,7 @@ const Accounts = () => {
     const handleEditAccount = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.put(`http://localhost:2001/api/accounts/${selectedAccount.accountId}/balance?amount=${parseFloat(formData.balance)}&operation=EDIT`, {
+            const response = await axios.put(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/${selectedAccount.accountId}/balance?amount=${parseFloat(formData.balance)}&operation=EDIT`, {
                 amount: parseFloat(formData.balance)
             });
             
@@ -76,7 +76,7 @@ const Accounts = () => {
 
     const handleReactivate = async (accountId) => {
         try {
-            const response = await axios.put(`http://localhost:2001/api/accounts/${accountId}/reactivate`);
+            const response = await axios.put(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/${accountId}/reactivate`);
             if (response.status === 200) {
                 toast.success('Account reactivated successfully');
                 fetchAccounts();
@@ -90,7 +90,7 @@ const Accounts = () => {
     const handleDelete = async (accountId) => {
         if (window.confirm('Are you sure you want to delete this account?')) {
             try {
-                const response = await axios.delete(`http://localhost:2001/api/accounts/${accountId}`);
+                const response = await axios.delete(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/${accountId}`);
                 if (response.status === 200) {
                     toast.success('Account deactivated successfully');
                     fetchAccounts();
