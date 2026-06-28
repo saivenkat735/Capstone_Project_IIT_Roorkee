@@ -22,7 +22,7 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/person")
-@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+@CrossOrigin(origins = "https://budgetwise-frontend-fuuo.onrender.com", allowCredentials = "true")
 public class PersonController {
 
     @Autowired

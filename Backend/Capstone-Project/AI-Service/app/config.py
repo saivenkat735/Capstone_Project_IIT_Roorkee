@@ -29,7 +29,7 @@ class Settings(BaseSettings):
     app_port: int = 8000
     cors_origins: List[str] = Field(
         default_factory=lambda: [
-            "http://localhost:3000",
+            "https://budgetwise-frontend-fuuo.onrender.com",
             "http://localhost:8080",
         ]
     )
