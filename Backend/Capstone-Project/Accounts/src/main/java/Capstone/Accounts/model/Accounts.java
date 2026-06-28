@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Entity
 public class Accounts {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long accountId;
 
     private String accountName;
