@@ -20,23 +20,23 @@ public class GatewayConfig {
                 .route("secure-service", r -> r
                         .path("/person/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:9099"))
+                        .uri("https://budgetwise-secure.onrender.com"))
                 .route("accounts-service", r -> r
                         .path("/api/accounts/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:2001"))
+                        .uri("https://budgetwise-accounts.onrender.com"))
                 .route("transaction-service", r -> r
                         .path("/TransactionHistory/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:2002"))
+                        .uri("https://budgetwise-transaction.onrender.com"))
                 .route("bills-service", r -> r
                         .path("/bills/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:9007"))
+                        .uri("https://budgetwise-bills1.onrender.com"))
                 .route("category-service", r -> r
                         .path("/category/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:2004"))
+                        .uri("https://budgetwise-category.onrender.com"))
                 .route("ai-service", r -> r
                         .path("/ai/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
