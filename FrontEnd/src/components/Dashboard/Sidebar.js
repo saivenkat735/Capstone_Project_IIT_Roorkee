@@ -6,10 +6,7 @@ import {
     FaExchangeAlt, 
     FaFileInvoice, 
     FaChartPie, 
-    FaCog,
     FaTags,
-    FaList,
-    FaArrowLeft,
     FaSignOutAlt,
     FaBookOpen
 } from 'react-icons/fa';

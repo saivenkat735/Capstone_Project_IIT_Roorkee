@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 import './Category.css';
@@ -19,9 +19,9 @@ const Category = () => {
 
     useEffect(() => {
         fetchCategories();
-    }, [selectedMonth]);
+    }, [fetchCategories]);
 
-    const fetchCategories = async () => {
+    const fetchCategories = useCallback(async () => {
         try {
             const personId = localStorage.getItem('personId');
             if (!personId) {
@@ -71,7 +71,7 @@ const Category = () => {
             toast.error('Failed to load categories');
             setLoading(false);
         }
-    };
+    }, [selectedMonth]);
 
     const handleCreateCategory = async (e) => {
         e.preventDefault();

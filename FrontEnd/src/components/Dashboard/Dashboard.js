@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import api from '../../utils/api';
 import { toast } from 'react-toastify';
 import { FaWallet, FaMoneyBill, FaChartLine, FaBell } from 'react-icons/fa';
 import './Dashboard.css';
