@@ -41,10 +41,10 @@ class Settings(BaseSettings):
     jwt_algorithm: str = "HS256"
 
     # ---- LLM (Ollama OpenAI-compatible endpoint by default) ----
-    llm_provider: str = "ollama"  # "ollama" | "openai"
-    llm_base_url: str = "http://localhost:11434/v1"
-    llm_api_key: str = "ollama"  # placeholder for ollama; real key for openai
-    llm_model: str = "llama3.2:3b"
+    llm_provider: str = "groq"  # "ollama" | "openai"
+    llm_base_url: str = "https://api.groq.com/openai/v1"
+    llm_api_key: str = Field(default="")  # placeholder for ollama; real key for openai
+    llm_model: str = "llama-3.3-70b-versatile"
 
     # ---- Embeddings (free local sentence-transformers by default) ----
     embedding_provider: str = "sentence-transformers"  # "sentence-transformers" | "openai"
@@ -58,11 +58,11 @@ class Settings(BaseSettings):
     sqlite_url: str = "sqlite+aiosqlite:///./data/budgetwise_ai.db"
 
     # ---- Existing Spring Boot microservices ----
-    backend_secure_url: str = "http://localhost:9099"
-    backend_accounts_url: str = "http://localhost:2001"
-    backend_transactions_url: str = "http://localhost:2002"
-    backend_bills_url: str = "http://localhost:9007"
-    backend_category_url: str = "http://localhost:2004"
+    backend_secure_url: str = "https://budgetwise-secure.onrender.com"
+    backend_accounts_url: str = "https://budgetwise-accounts.onrender.com"
+    backend_transactions_url: str = "https://budgetwise-transaction.onrender.com"
+    backend_bills_url: str = "https://budgetwise-bills1.onrender.com"
+    backend_category_url: str = "https://budgetwise-category.onrender.com"
 
     # ---- Chunking / retrieval ----
     chunk_size: int = 800
