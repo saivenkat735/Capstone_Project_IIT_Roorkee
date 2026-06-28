@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
-@FeignClient(name = "CATEGORY-SERVICE", url = "http://localhost:2004/category")
+@FeignClient(name = "CATEGORY-SERVICE", url = "https://budgetwise-category.onrender.com/category")
 public interface CategoryFeignClient {
     @GetMapping("/{categoryId}")
     ResponseEntity<CategoryDTO> getCategoryById(@PathVariable Long categoryId);

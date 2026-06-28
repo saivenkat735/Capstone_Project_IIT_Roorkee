@@ -40,7 +40,7 @@ public class GatewayConfig {
                 .route("ai-service", r -> r
                         .path("/ai/**")
                         .filters(f -> f.filter(authFilter.apply(new AuthenticationFilter.Config())))
-                        .uri("http://localhost:8000"))
+                        .uri("https://budgetwise-ai.onrender.com"))
                 .build();
     }
 } 

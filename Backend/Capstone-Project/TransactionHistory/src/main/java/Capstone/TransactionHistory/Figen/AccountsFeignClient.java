@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@FeignClient(name = "ACCOUNTS-SERVICE", url = "http://localhost:2001/api/accounts")
+@FeignClient(name = "ACCOUNTS-SERVICE", url = "https://budgetwise-accounts.onrender.com/api/accounts")
 public interface AccountsFeignClient {
     @GetMapping("/{accountId}")
     ResponseEntity<AccountDTO> getAccountById(@PathVariable Long Id);
