@@ -41,7 +41,7 @@ const Bills = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('${process.env.REACT_APP_CATEGORY_URL}/category');
+            const response = await axios.get(`${process.env.REACT_APP_CATEGORY_URL}/category`);
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -176,7 +176,7 @@ const Bills = () => {
                     personId: personId,
                     isFloatingExpense: false
                 };
-                const categoryResponse = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', newCategory);
+                const categoryResponse = await axios.post(`${process.env.REACT_APP_CATEGORY_URL}/category`, newCategory);
                 billCategory = categoryResponse.data;
                 await fetchCategories();
             }
@@ -192,7 +192,7 @@ const Bills = () => {
             };
 
             // Create the transaction
-            const transactionResponse = await axios.post('${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction', transactionData);
+            const transactionResponse = await axios.post(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction`, transactionData);
 
             if (transactionResponse.status === 200) {
                 // Calculate next month's due date

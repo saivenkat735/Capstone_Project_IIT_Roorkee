@@ -49,7 +49,7 @@ const RecurringPayments = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.get(
-                '${process.env.REACT_APP_BILLS_URL}/recurring-payments',
+                `${process.env.REACT_APP_BILLS_URL}/recurring-payments`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             
@@ -73,7 +73,7 @@ const RecurringPayments = () => {
         try {
             const token = localStorage.getItem('authToken');
             await axios.post(
-                '${process.env.REACT_APP_BILLS_URL}/recurring-payments',
+                `${process.env.REACT_APP_BILLS_URL}/recurring-payments`,
                 newPayment,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

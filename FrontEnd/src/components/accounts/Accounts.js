@@ -24,7 +24,7 @@ const Accounts = () => {
     const fetchAccounts = async () => {
         try {
             const personId = localStorage.getItem('personId');
-            const response = await axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${decodedToken.personId}`);
+            const response = await axios.get(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts/person/${personId}`);
             setAccounts(response.data);
             setLoading(false);
         } catch (error) {
@@ -38,7 +38,7 @@ const Accounts = () => {
         e.preventDefault();
         try {
             const personId = localStorage.getItem('personId');
-            await axios.post('${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts', {
+            await axios.post(`${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts`, {
                 ...formData,
                 id: personId,
                 userName: personId,

@@ -51,7 +51,7 @@ const BudgetPlanner = () => {
     const fetchBudgets = async () => {
         const token = localStorage.getItem('authToken');
         const response = await axios.get(
-            'http://localhost:9008/budgets',
+            `http://localhost:9008/budgets`,
             { headers: { 'Authorization': `Bearer ${token}` } }
         );
         setBudgets(response.data);
@@ -62,7 +62,7 @@ const BudgetPlanner = () => {
         try {
             const token = localStorage.getItem('authToken');
             await axios.post(
-                'http://localhost:9008/budgets',
+                `http://localhost:9008/budgets`,
                 newBudget,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );

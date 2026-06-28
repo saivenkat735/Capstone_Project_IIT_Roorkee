@@ -40,7 +40,7 @@ const Transaction = () => {
 
     const fetchCategories = async () => {
         try {
-            const response = await axios.get('${process.env.REACT_APP_CATEGORY_URL}/category');
+            const response = await axios.get(`${process.env.REACT_APP_CATEGORY_URL}/category`);
             setCategories(response.data);
         } catch (error) {
             console.error('Error fetching categories:', error);
@@ -136,7 +136,7 @@ const Transaction = () => {
                         isFloatingExpense: false,
                         amountSpent: transactionFormData.type === 'DEBIT' ? amount : 0
                     };
-                    const categoryResponse = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', newCategory);
+                    const categoryResponse = await axios.post(`${process.env.REACT_APP_CATEGORY_URL}/category`, newCategory);
                     categoryId = categoryResponse.data.categoryId;
                 } catch (error) {
                     console.error('Error creating new category:', error);
@@ -169,7 +169,7 @@ const Transaction = () => {
                 categoryId: categoryId
             };
 
-            const response = await axios.post('${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction', transactionData);
+            const response = await axios.post(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/transaction`, transactionData);
 
             if (response.status === 200) {
                 setTransactions(prevTransactions => [response.data, ...prevTransactions]);

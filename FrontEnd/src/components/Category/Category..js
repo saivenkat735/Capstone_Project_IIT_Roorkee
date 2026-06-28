@@ -32,7 +32,7 @@ const Category = () => {
             // Get all transactions and categories
             const [transactionsResponse, categoriesResponse] = await Promise.all([
                 axios.get(`${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory/person/${personId}`),
-                axios.get('${process.env.REACT_APP_CATEGORY_URL}/category')
+                axios.get(`${process.env.REACT_APP_CATEGORY_URL}/category`)
             ]);
 
             // Filter debit categories
@@ -76,7 +76,7 @@ const Category = () => {
     const handleCreateCategory = async (e) => {
         e.preventDefault();
         try {
-            const response = await axios.post('${process.env.REACT_APP_CATEGORY_URL}/category', {
+            const response = await axios.post(`${process.env.REACT_APP_CATEGORY_URL}/category`, {
                 ...newCategory,
                 type: 'DEBIT',
                 amountSpent: 0

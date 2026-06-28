@@ -36,7 +36,7 @@ const ExpenseBreakdown = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.get(
-                '${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory',
+                `${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             

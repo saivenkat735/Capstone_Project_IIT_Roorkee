@@ -50,7 +50,7 @@ const UserProfile = () => {
 
                 // Fetch transaction statistics
                 const transactionsResponse = await axios.get(
-                    '${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory',
+                    `${process.env.REACT_APP_TRANSACTION_URL}/TransactionHistory`,
                     { headers: { 'Authorization': `Bearer ${token}` } }
                 );
 

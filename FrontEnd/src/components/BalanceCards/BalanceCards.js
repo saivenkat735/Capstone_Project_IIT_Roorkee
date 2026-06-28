@@ -43,7 +43,7 @@ const BalanceCards = () => {
             const decodedToken = jwtDecode(token);
             
             await axios.post(
-                '${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts',
+                `${process.env.REACT_APP_ACCOUNTS_URL}/api/accounts`,
                 {
                     ...newAccount,
                     id: decodedToken.personId,

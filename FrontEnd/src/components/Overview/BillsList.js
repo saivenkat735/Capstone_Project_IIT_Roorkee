@@ -16,7 +16,7 @@ const BillsList = () => {
         try {
             const token = localStorage.getItem('authToken');
             const response = await axios.get(
-                '${process.env.REACT_APP_BILLS_URL}/bills/getbills',
+                `${process.env.REACT_APP_BILLS_URL}/bills/getbills`,
                 { headers: { 'Authorization': `Bearer ${token}` } }
             );
             

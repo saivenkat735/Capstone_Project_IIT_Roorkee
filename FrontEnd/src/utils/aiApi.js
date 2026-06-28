@@ -4,7 +4,7 @@ import axios from 'axios';
 // (The existing frontend talks to each Spring service directly on its own port,
 //  so we follow the same convention here.)
 const AI_BASE_URL =
-  process.env.REACT_APP_AI_BASE_URL || '${process.env.REACT_APP_AI_URL}';
+  process.env.REACT_APP_AI_BASE_URL || `${process.env.REACT_APP_AI_URL}`;
 
 const aiClient = axios.create({
   baseURL: AI_BASE_URL,

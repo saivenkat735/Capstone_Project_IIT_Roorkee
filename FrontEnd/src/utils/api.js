@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = '${process.env.REACT_APP_SECURE_URL}'; // Replace with your actual backend URL
+const BASE_URL = `${process.env.REACT_APP_SECURE_URL}`; // Replace with your actual backend URL
 
 // Create axios instances for different endpoints
 const createAxiosInstance = (baseURL) => {
